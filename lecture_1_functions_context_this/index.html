@@ -26,7 +26,7 @@
         </h1>
         <p style="font-size: 2rem; color: black; text-shadow: none; font-weight: bold;">Часть 1.</p>
         <div
-          style="margin-top: 250px; display: flex; flex-direction: column; flex-grow: 1; align-items: flex-end;color: black;">
+          style="margin-top: 100px; display: flex; flex-direction: column; flex-grow: 1; align-items: flex-end;color: black;">
           <span>Айнур Шауэрман</span>
           <span>Фронтенд разработчик в StormWall Labs</span>
         </div>
@@ -34,40 +34,41 @@
 
       <section class="content">
         <h2>Содержание:</h2>
-        <ul>
-          <li style="font-size: 1.75rem;">1. Функция.
+        <ul class="content__list">
+          <li>1. Функция.
             <ul>
-              <li style="font-size: 1.4rem;padding: 5px;">1.1. Смысл - зачем нужна, когда использовать</li>
-              <li style="font-size: 1.4rem;padding: 5px;">1.2. Синтаксис</li>
-              <li style="font-size: 1.4rem;padding: 5px;">1.3. Именование / naming</li>
-              <li style="font-size: 1.4rem;padding: 5px;">1.4. Возвращаемое значение и результат выполнения функции</li>
+              <li>1.1. Смысл - зачем нужна, когда использовать</li>
+              <li>1.2. Синтаксис</li>
+              <li>1.3. Именование / naming</li>
+              <li>1.4. Возвращаемое значение и результат выполнения функции</li>
             </ul>
           </li>
-          <li style="font-size: 1.75rem;">2. Контекст / Context.
+          <li>2. Контекст / Context.
             <ul>
-              <li style="font-size: 1.4rem;padding: 5px;">2.1. Смысл</li>
-              <li style="font-size: 1.4rem;padding: 5px;">2.2. Рекурсивная функция</li>
-              <li style="font-size: 1.4rem;padding: 5px;">2.3. Переменные - локальные, внешние</li>
-              <li style="font-size: 1.4rem;padding: 5px;">2.4. Параметры - параметры по умолчанию, остаточные параметры,
+              <li>2.1. Смысл</li>
+              <li>2.2. Рекурсивная функция</li>
+              <li>2.3. Переменные - локальные, внешние</li>
+              <li>2.4. Параметры - параметры по умолчанию, остаточные параметры,
                 оператор расширения </li>
             </ul>
           </li>
-          <li style="font-size: 1.75rem;">3. Объект привязки / this
+          <li>3. Объект привязки / this
             <ul>
               <li style="font-size: 1.4rem;">3.1. Значение (в строгом и нестрогом режимах)</li>
-              <li style="font-size: 1.4rem;padding: 5px;">3.2. Зависимость this от метода вызова функции</li>
-              <li style="font-size: 1.4rem;padding: 5px;">3.3. Методы передачи контекста - bind / apply / call </li>
+              <li>3.2. Зависимость this от метода вызова функции</li>
+              <li>3.3. Методы передачи контекста - bind / apply / call </li>
             </ul>
           </li>
         </ul>
       </section>
-      <section>
+
+      <section class="page">
         <h2>1. Функция</h2>
         <p>Ключевые моменты:</p>
         <ul>
-          <li> <i class="fas fa-rocket"></i> Функция - это объект</li>
+          <li>Функция - это объект</li>
           <li>
-            <p><i class="fas fa-rocket"></i> Важнейшей особенностью языка JS является первоклассная поддержка функций​
+            <p>Важнейшей особенностью языка JS является первоклассная поддержка функций​
               (functions as first-class citizen).</p>
             <p>Это означает, что язык поддерживает:
             <ol>
@@ -82,26 +83,24 @@
               середине 1960-х.</p>
           </li>
         </ul>
-
-
-
       </section>
-      <section>
+
+      <section class="page">
         <h3>1.1. Смысл - зачем нужна, когда использовать</h3>
         <ul>
-          <li><i class="fas fa-dot-circle"></i>DRY</li>
-          <li><i class="fas fa-dot-circle"></i>Выразительность</li>
+          <li>DRY</li>
+          <li>Выразительность</li>
         </ul>
       </section>
+
       <section>
-        <section>
+        <section class="page">
           <h3>1.2. Синтаксис</h3>
           <p>Объявление функции состоит из следующих частей:</p>
           <ul>
-            <li><i class="fas fa-dot-circle"></i> Имя функции.</li>
-            <li><i class="fas fa-dot-circle"></i> Список параметров (принимаемых функцией) заключённых в круглые скобки
-              ()
-              и разделённых запятыми.
+            <li>Имя функции.</li>
+            <li>Список параметров, заключённых в круглые скобки
+              () и разделённых запятыми.
               <ol>
                 <li>
                   Примитивные параметры передаются функции значением; значение передаётся в функцию,
@@ -112,69 +111,91 @@
                   видно и вне функции.</li>
               </ol>
             </li>
-            <li><i class="fas fa-dot-circle"></i> Инструкции, которые будут выполнены после вызова функции, заключают в
+            <li>Инструкции, которые будут выполнены после вызова функции, заключают в
               фигурные скобки { }.</li>
           </ul>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-10">function isRecipeVegan(recipe) {
   const isRecipeContainProducts = recipe.includes('milk', 'egg', 'meat');
   return isRecipeContainProducts;
 }</code></pre>
-
         </section>
 
-        <section>
-          <h4>Декларативная функция / function declaration</h4>
-
+        <section class="page">
+          <h3>Декларативная функция / function declaration</h3>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-10">function getMathHomework(allHomework) {
   return allHomework.math;
 }</code></pre>
-
         </section>
-        <section>
-          <h4>Функциональное выражение / function definition expression</h4>
 
+        <section class="page">
+          <h3>Функциональное выражение / function definition expression</h3>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-10">const getMathHomework = function (allHomework) {
   return allHomework.math;
 }</code></pre>
         </section>
-        <section>
-          <h4>Стрелочная функция / Arrow function</h4>
 
+        <section class="page">
+          <h3>Стрелочная функция / Arrow function</h3>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-10">const getMathHomework = (allHomework) => {
   return allHomework.math;
 }</code></pre>
         </section>
-        <section>
-          <h4>Функция немедленного выполнения</h4>
 
+        <section class="page">
+          <h3>Функция немедленного выполнения</h3>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-10">(function writeInConsole() {
   console.log('сразу выполняемая функция');
 })();</code></pre>
         </section>
       </section>
 
-      <section>
-        <h4>1.3 Наименование функции</h4>
-        <p>Функция – это список инструкцийб а лучше одной инструкций, т.е. действие. Поэтому имя функции обычно является
-          глаголом.</p>
+      <section class="page">
+        <h3>1.3. Наименование функции</h3>
+        <p><span class="txt__highlighted">Функция</span> – это список инструкций, а лучше одной инструкций, т.е.
+          действие. Поэтому имя функции обычно является глаголом.</p>
         <p>Оно должно быть выразительным, чтобы программист, который будет читать код, сразу быстро понял, что делает
           функция, с минимальным мозговым напряжением.</p>
         <p>Часто использующиеся глагольные префиксы: </p>
-        <ul>
-          <li><span class="txt__highlighted">handle...</span> – обработать что-то (обычно событие),</li>
-          <li><span class="txt__highlighted">get…</span> – возвращают значение,</li>
-          <li><span class="txt__highlighted">set…</span> – установить значение,</li>
-          <li><span class="txt__highlighted">calc…</span> – что-то вычисляют,
-          <li><span class="txt__highlighted">create…</span> – что-то создают,
-          <li><span class="txt__highlighted">check…</span> – что-то проверяют и возвращают логическое значение, и т.д.
-        </ul>
+        <table class="table">
+          <tr>
+            <td><span class="txt__highlighted">handle...</span></td>
+            <td>– обработать что-то (обычно событие),</td>
+          </tr>
+          <tr>
+            <td><span class="txt__highlighted">get…</span></td>
+            <td> – возвращают значение,</td>
+          </tr>
+          <tr>
+            <td><span class="txt__highlighted">set…</span></td>
+            <td>– установить значение,</td>
+          </tr>
+          <tr>
+            <td><span class="txt__highlighted">calc…</span></td>
+            <td>– что-то вычисляют,</td>
+          </tr>
+          <tr>
+            <td><span class="txt__highlighted">create…</span></td>
+            <td>– что-то создают,</td>
+          </tr>
+          <tr>
+            <td><span class="txt__highlighted">check…</span></td>
+            <td>– что-то проверяют и возвращают логическое значение.</td>
+          </tr>
+        </table>
       </section>
 
       <section>
-        <section>
-          <h4>1.4 Возвращаемое значение и результат выполнения функции</h4>
+        <section class="page">
+          <h3>1.4. Возвращаемое значение и результат выполнения функции</h3>
           <p>Функция может вернуть результат, который будет передан в вызвавший её код.</p>
-          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">const MENU_LIST = ['Main', 'Profile', 'Schedule', 'Students', 'Reports', 'Administration'];
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">const MENU_LIST = [
+  'Main',
+  'Profile',
+  'Schedule',
+  'Students',
+  'Reports',
+  'Administration'
+];
 const role = {
   student: 'student',
   admin: 'admin',
@@ -197,7 +218,7 @@ function getMenu(allMenu, role) {
 }</code></pre>
         </section>
 
-        <section>
+        <section class="page">
           <p>Результат функции с пустым return или без него – undefined.</p>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function highOrderFunction(dayNumber, doing) {
   if (1 <= dayNumber <= 10) {
@@ -208,15 +229,14 @@ function getMenu(allMenu, role) {
       </section>
 
       <section>
-        <section>
-          <h2>2. Контекст / Context</h2>
+        <section class="page">
+          <h3>2. Контекст / Context</h3>
           <p>Контекст функции - это значение this для этой функций​, т.е. объект, для которого функция вызывается как
             метод.</p>
           В JavaScript существует три типа контекстов выполнения:
-          <ul>
-            <li>
-            </li>
-            <li>Глобальный контекст выполнения. Это базовый, используемый по умолчанию контекст выполнения. Если некий
+          <ul class="long-list">
+            <li><span class="txt__highlighted">Глобальный контекст выполнения.</span> Это базовый, используемый по
+              умолчанию контекст выполнения. Если некий
               код находится не внутри какой-нибудь функции, значит этот код принадлежит глобальному контексту.
               Глобальный
               контекст характеризуется наличием глобального объекта, которым, в случае с браузером, является объект
@@ -224,30 +244,32 @@ function getMenu(allMenu, role) {
               один
               глобальный контекст.
             </li>
-            <li>Контекст выполнения функции. Каждый раз, когда вызывается функция, для неё создаётся новый контекст.
+            <li><span class="txt__highlighted">Контекст выполнения функции.</span> Каждый раз, когда вызывается функция,
+              для неё создаётся новый контекст.
               Каждая функция имеет собственный контекст выполнения. В программе может одновременно присутствовать
               множество контекстов выполнения функций. При создании нового контекста выполнения функции он проходит
               через
               определённую последовательность шагов, о которой мы поговорим ниже.
             </li>
-            <li>Контекст выполнения функции eval. Код, выполняемый внутри функции eval, также имеет собственный контекст
+            <li><span class="txt__highlighted">Контекст выполнения функции eval.</span> Код, выполняемый внутри функции
+              eval, также имеет собственный контекст
               выполнения. Однако функцией eval пользуются очень редко, поэтому здесь мы об этом контексте выполнения
               говорить не будем.
             </li>
           </ul>
         </section>
-        <section>
+
+        <section class="page stack">
           <p>Стек выполнения (execution stack), который ещё называют стеком вызовов (call stack), это LIFO-стек, который
             используется для хранения контекстов выполнения, создаваемых в ходе работы кода.
           </p>
-          <p>
-            Когда JS-движок начинает обрабатывать скрипт, движок создаёт глобальный контекст выполнения и помещает его в
+          <p>Когда JS-движок начинает обрабатывать скрипт, движок создаёт глобальный контекст выполнения и помещает его
+            в
             текущий стек. При обнаружении команды вызова функции движок создаёт новый контекст выполнения для этой
             функции
             и помещает его в верхнюю часть стека.
           </p>
-          <p>
-            Движок выполняет функцию, контекст выполнения которой находится в верхней части стека. Когда работа функции
+          <p>Движок выполняет функцию, контекст выполнения которой находится в верхней части стека. Когда работа функции
             завершается, её контекст извлекается из стека и управление передаётся тому контексту, который находится в
             предыдущем элементе стека.</p>
           <img src="./assets/imgs/context.png" />
@@ -261,8 +283,9 @@ function second() {
 }
 first();</code></pre>
         </section>
-        <section>
-          <h4>Создание контекста</h4>
+
+        <section class="page stack">
+          <h3>Создание контекста</h3>
           <p>Перед выполнением JavaScript-кода создаётся контекст выполнения. В процессе его создания выполняются три
             действия:</p>
           <ul>
@@ -271,13 +294,14 @@ first();</code></pre>
             <li>Создаётся компонент VariableEnvironment (окружение переменных).</li>
           </ul>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">ExecutionContext = {
-  ThisBinding = <this value>,
+  ThisBinding = this value,
   LexicalEnvironment = { ... },
   VariableEnvironment = { ... },
 }</code></pre>
         </section>
-        <section>
-          <p>Привязка this</p>
+
+        <section class="page">
+          <h3>Привязка this</h3>
           <p>В глобальном контексте выполнения this содержит ссылку на глобальный объект (в браузере это объект window).
           </p>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">let foo = {
@@ -285,16 +309,15 @@ first();</code></pre>
     console.log(this);
   }
 }
-foo.baz();    // 'this' указывает на объект 'foo', так как функция 'baz' была вызвана как метод объекта 'foo'
+foo.baz();
 let bar = foo.baz;</code></pre>
-          <p>Лексическое окружение</p>
-          <p> — это структура, которая хранит сведения о соответствии идентификаторов и переменных. Под
+          <p><span class="txt__highlighted">Лексическое окружение</span> — это структура, которая хранит сведения
+            о соответствии идентификаторов и переменных. Под
             «идентификатором» здесь понимается имя переменной или функции, а под «переменной» — ссылка на конкретный
             объект (в том числе — на функцию) или примитивное значение.</p>
 
-          <p>Окружение переменных (Variable Environment)</p>
-
-          <p>— это тоже лексическое окружение, запись окружения которого хранит привязки, созданные посредством команд
+          <p><span class="txt__highlighted">Окружение переменных (Variable Environment)</span> — это тоже лексическое
+            окружение, запись окружения которого хранит привязки, созданные посредством команд
             объявления переменных (VariableStatement) в текущем контексте выполнения.</p>
 
           <p>Так как окружение переменных также является лексическим окружением, оно обладает всеми вышеописанными
@@ -310,8 +333,9 @@ let bar = foo.baz;</code></pre>
           </p>
         </section>
       </section>
-      <section>
-        <h4>2.2. Рекурсивная функция</h4>
+
+      <section class="page">
+        <h3>2.2. Рекурсивная функция</h3>
         <p>Функция может вызывать саму себя. Три способа такого вызова:</p>
         <ol>
           <li>по имени функции</li>
@@ -330,14 +354,15 @@ let bar = foo.baz;</code></pre>
 foo(0);</code></pre>
 
       </section>
-      <section>
-        <h4>2.3. Переменные</h4>
-        <p><span class=".txt__highlighted">Локальные переменные</span> - это переменные, объявленные внутри функции,
-          видны
-          только внутри этой функции.</p>
-        <p><span class=".txt__highlighted">Внешние переменные</span> - это переменные, объявленные вне функции.</p>
-        <p>Функция обладает полным доступом к внешним переменным и может изменять их значение.</p>
-        <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">let pet = 'Вася';
+
+      <section class="page">
+        <h3>2.3. Переменные</h4>
+          <p><span class="txt__highlighted">Локальные переменные</span> - это переменные, объявленные внутри функции,
+            видны
+            только внутри этой функции.</p>
+          <p><span class="txt__highlighted">Внешние переменные</span> - это переменные, объявленные вне функции.</p>
+          <p>Функция обладает полным доступом к внешним переменным и может изменять их значение.</p>
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">let pet = 'Вася';
 
 function showMessage() {
   pet = "Петя";
@@ -350,16 +375,16 @@ showMessage();
 console.log(pet);</code></pre>
 
 
-        <p>Внешняя переменная используется, только если внутри функции нет такой локальной.</p>
+          <p>Внешняя переменная используется, только если внутри функции нет такой локальной.</p>
       </section>
 
       <section>
-        <section>
-          <h4>2.4 Параметры функции (аргументы функции)</h4>
-          <p>Нужны для передачи информации внутрь функции.</p>
-          <p>Переданные значения копируются в локальные переменные </p>
+        <section class="page">
+          <h3>2.4 Параметры функции (аргументы функции)</h4>
+            <p>Нужны для передачи информации внутрь функции.</p>
+            <p>Переданные значения копируются в локальные переменные </p>
 
-          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function tryChangeParams(param0, param1) {
+            <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function tryChangeParams(param0, param1) {
   console.log('Before change: \nparam0:', param0, '\nparam1: ', param1);
 
   param0 = param0 + ' is changed';
@@ -372,10 +397,11 @@ console.log('\n\nOut of func: \nparam0:', param0, '\nparam1: ', param1);
 </code></pre>
 
 
-          <p>Внешняя переменная используется, только если внутри функции нет такой локальной.</p>
+            <p>Внешняя переменная используется, только если внутри функции нет такой локальной.</p>
         </section>
-        <section>
-          <h5>Параметры по умолчанию</h5>
+
+        <section class="page">
+          <h3>Параметры по умолчанию</h3>
           <p>Если параметр не указан, то его значением становится <span class="txt__highlighted">undefined</span>.</p>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">// undefined
 function a(b) {
@@ -397,13 +423,13 @@ e(456);
           </code></pre>
         </section>
 
-        <section>
-          <h5>Объект arguments</h5>
+        <section class="page">
+          <h3>Объект arguments</h3>
           <p>Объект arguments функции является псевдо-массивом. Внутри функции вы можете ссылаться к аргументам
             следующим образом:</p>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">arguments[i]</code></pre>
           <p>где <span class="txt__highlighted">i</span> — это порядковый номер аргумента, отсчитывающийся с 0.</p>
-          <p>где <span class="txt__highlighted">arguments.length</span> — количество всех аргументов.</p>
+          <p><span class="txt__highlighted">arguments.length</span> — количество всех аргументов.</p>
 
           <p>Удобно пользоваться, если вы не знаете точно, сколько аргументов должна принять ваша функция.</p>
 
@@ -418,25 +444,27 @@ e(456);
 
 const greating = getGreetingMsg('Вася', 'Иннокентий', 'Андриан', 'Людмила', 'Александр', 'Саша');
 console.log(greating);
-</code></pre>
 
+</code></pre>
         </section>
-        <section>
-          <h5>Остаточные параметры (Rest parameters)</h5>
-          <p> - массив неопределённых аргументов.</p>
+
+        <section class="page">
+          <h3>Остаточные параметры (Rest parameters)</h3>
+          <p> - это массив неопределённых аргументов.</p>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function multiply(multiplier, ...theArgs) {
   return theArgs.map(x => multiplier * x);
 }
 
 const arr = multiply(2, 1, 2, 3);
 console.log(arr); // [2, 4, 6]
+
 </code></pre>
 
         </section>
       </section>
 
       <section>
-        <section>
+        <section class="page">
           <h3>Strict mode / Строгий режим</h3>
           <ul>
             <li>Введен в ECMAScript 5 (2009 год). Тогда добавили новые возможности в язык и изменили некоторые из
@@ -449,15 +477,16 @@ console.log(arr); // [2, 4, 6]
               автоматически включают строгий режим. Поэтому в них нет нужды добавлять директиву
               "use strict".</li>
           </ul>
-          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">/ Синтаксис переключения в строгий режим всего скрипта
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">// Синтаксис переключения в строгий режим всего скрипта
 "use strict";
 const str = "Привет! Я скрипт в строгом режиме!";
+
 </code></pre>
         </section>
 
-        <section>
-          <h5>Различия non-strict и strict режимов</h5>
-          <p>Синтаксические ошибки</p>
+        <section class="page">
+          <h3>Различия non-strict и strict режимов</h3>
+          <h4>Синтаксические ошибки</h4>
 
           <p>При добавлении "use strict"; следующие случаи вызывают SyntaxError до выполнения скрипта:</p>
           <ul>
@@ -482,15 +511,17 @@ const str = "Привет! Я скрипт в строгом режиме!";
       </section>
 
       <section>
-        <section>
+        <section class="page">
           <h3>3. Объект привязки / this</h3>
-          <h4>3.1. Значение в строгом и нестрогом режиме</h4>
-          <p>В функциях в нестрогом режиме значением this является глобальный объект. В строгом режиме он равен
-            undefined.
-          </p>
-          <h4>3.2. Зависимость this от способа вызова функции</h4>
-          <p>Но! Если функция использовается как метод объекта, this будет ссылкой на этот объект.</p>
-          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">
+          <h3>3.1. Значение в строгом и нестрогом режиме</h4>
+            <p>В функциях в нестрогом режиме значением <span class="txt__highlighted">this</span> является глобальный
+              объект. В строгом режиме он равен undefined.
+            </p>
+        </section>
+        <section class="page">
+          <h3>3.2. Зависимость this от способа вызова функции</h4>
+            <p>Но! Если функция использовается как метод объекта, this будет ссылкой на этот объект.</p>
+            <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">
 const post = {
   id: 155,
   title: 'Pst title',
@@ -518,8 +549,10 @@ function getName() {
   return `<p>User name: ${this.name}</p>`;
 }</code></pre>
         </section>
-        <section>
-          <h4>3.3. Метод bind</h4>
+      </section>
+
+      <section class="page">
+        <h3>3.3. Метод bind</h4>
           <p>создаёт новую функцию, которая при вызове устанавливает в качестве контекста выполнения this
             предоставленное
             значение.</p>
@@ -549,9 +582,10 @@ const progVersion = {
 };
 const getImgResizerVersion = getVersion.bind(progVersion, 'ImageResizer');
 </code></pre>
-        </section>
-        <section>
-          <h4>Метод call и apply</h4>
+      </section>
+
+      <section class="page">
+        <h3>Метод call и apply</h4>
           <p> - вызывает функцию с указанным значением this и индивидуально предоставленными аргументами.</p>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">func.call(context, arg1, arg2);
 // результат одинаковый будет
@@ -570,16 +604,12 @@ const userRegistered = {
 console.log(getPermissionTxt.bind(userRegistered, permissions)());
 console.log(getPermissionTxt.call(userRegistered, 'posts', 'chats'));
 console.log(getPermissionTxt.apply(userRegistered, ['posts', 'chats']));</code></pre>
-        </section>
+      </section>
       </section>
 
 
-      <section>
-        <h1>Теперь вы знаете достаточно, чтобы ...</h1>
-        <p>Что я могла забыть показать:</p>
-        <ul style="list-style: square;">
-          <li>что будет в следующей лекции</li>
-        </ul>
+      <section class="page">
+        <p>На сегодня все. Продолжение в следующей лекции.</p>
       </section>
     </div>
   </div>

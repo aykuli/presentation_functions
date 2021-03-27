@@ -34,35 +34,35 @@
 
       <section class="content">
         <h2>Содержание:</h2>
-        <ul>
-          <li style="font-size: 1.75rem;">1. Область видимости / Scope.
+        <ul class="content__list">
+          <li>1. Область видимости / Scope.
             <ul>
-              <li style="font-size: 1.4rem;padding: 5px;">1.1. Смысл</li>
-              <li style="font-size: 1.4rem;padding: 5px;">1.2. Вложенные функции</li>
-              <li style="font-size: 1.4rem;padding: 5px;">1.3. Конфликты имен при нескольких уровнях вложенности - кто
+              <li>1.1. Смысл</li>
+              <li>1.2. Вложенные функции</li>
+              <li>1.3. Конфликты имен при нескольких уровнях вложенности - кто
                 победит?</li>
             </ul>
           </li>
-          <li style="font-size: 1.75rem;">2. Всплытие функции / Hoisting.
+          <li>2. Всплытие функции / Hoisting.
             <ul>
-              <li style="font-size: 1.4rem;padding: 5px;">2.1. Смысл</li>
-              <li style="font-size: 1.4rem;padding: 5px;">2.2. Поведение функции при разных способах ее определения</li>
-              <li style="font-size: 1.4rem;padding: 5px;">2.3. Строгий и нестрогий режимы</li>
+              <li>2.1. Смысл</li>
+              <li>2.2. Поведение функции при разных способах ее определения</li>
+              <li>2.3. Строгий и нестрогий режимы</li>
             </ul>
           </li>
-          <li style="font-size: 1.75rem;">3.Замыкание / Closures
+          <li>3.Замыкание / Closures
             <ul>
-              <li style="font-size: 1.4rem;">3.1. Инкапсуляция вложенной функции</li>
-              <li style="font-size: 1.4rem;padding: 5px;">3.2. Псевдомассив arguments</li>
-              <li style="font-size: 1.4rem;padding: 5px;">3.3. Параметры функции: по умолчанию (default) и оставшиеся
+              <li>3.1. Инкапсуляция вложенной функции</li>
+              <li>3.2. Псевдомассив arguments</li>
+              <li>3.3. Параметры функции: по умолчанию (default) и оставшиеся
                 (rest)</li>
-              <li style="font-size: 1.4rem;padding: 5px;">3.4. Стрелочные функции / arrow functions</li>
+              <li>3.4. Стрелочные функции / arrow functions</li>
             </ul>
           </li>
         </ul>
       </section>
       <section>
-        <section>
+        <section class="page">
           <h2>1. Область видимости / Scope.</h2>
           <p>Область видимости определяет доступность переменных. Данная концепция лежит в основе
             замыканий, разделяя переменные на глобальные и локальные.</p>
@@ -77,7 +77,8 @@ console.log(oneMoreMessage)
 </code></pre>
 
         </section>
-        <section>
+
+        <section class="page">
           <p>Функции в JavaScript создают область видимости для всех переменных, независимо от того, с помощью какого
             ключевого слова они объявлены (var, const или let).</p>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-10">function run() {
@@ -85,12 +86,12 @@ console.log(oneMoreMessage)
   var message = 'Беги, Форрест, беги!'
   console.log(message)
 }
-run() // 'Беги, Форрест, беги!'
+run()
 console.log(message) // ReferenceError
           </code></pre>
         </section>
-        <section>
-          <h4>1.2. Области видимости могут быть вложенными.</h4>
+        <section class="page">
+          <h3>1.2. Области видимости могут быть вложенными.</h3>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-20">function make() {
   // область видимости функции run()
   const action = 'Беги';
@@ -101,30 +102,32 @@ console.log(message) // ReferenceError
     // область видимости блока if
     const action1 = 'Кури';
     const name = 'Бубба';
-    console.log(`${action1}, ${name}, ${action1}!`); // 'Беги, Форрест, беги!'
+    console.log(`${action1}, ${name}, ${action1}!`);
   }
   console.log(action1); // ReferenceError
 }
 make();
         </code></pre>
         </section>
-        <section>
+
+        <section class="page">
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function f0() {
-            const f0Value = 'first scope';
-            function f1() {
-              const f1Value = 'secons scope';
-              console.log('f0Value: ', f0Value);
-              console.log('f1Value: ', f1Value);
-            }
-            f1();
-            console.log('f0Value: ', f0Value);
-            console.log('f1Value: ', f1Value);
-          }
-          
-          f0();</code></pre>
+  const f0Value = 'first scope';
+  function f1() {
+    const f1Value = 'secons scope';
+    console.log('f0Value: ', f0Value);
+    console.log('f1Value: ', f1Value);
+  }
+  f1();
+  console.log('f0Value: ', f0Value);
+  console.log('f1Value: ', f1Value);
+}
+
+f0();</code></pre>
         </section>
-        <section>
-          <h4>1.3. Конфликты имен при нескольких уровнях вложенности - кто победит?</h4>
+
+        <section class="page">
+          <h3>1.3. Конфликты имен при нескольких уровнях вложенности - кто победит?</h3>
           <p>Ответ: победит самое вложенное определение сущности</p>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function f0() {
   let f0Value = 'first scope';
@@ -151,9 +154,10 @@ make();
 f0();</code></pre>
         </section>
       </section>
+
       <section>
-        <section>
-          <h4>2. Всплытие функции / Hoisting</h4>
+        <section class="page">
+          <h3>2. Всплытие функции / Hoisting</h3>
           <p>Объявление декларативной функции в JavaScript поднимает определение функции. Вы можете использовать функцию
             до того, как вы её объявили:</p>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-20">hoisted(); // выводит "foo"
@@ -180,8 +184,8 @@ const notHoisted = function() {
       </section>
 
       <section>
-        <section>
-          <h4>3. Замыкание / Closures</h4>
+        <section class="page">
+          <h3>3. Замыкание / Closures</h3>
           <p>Вы можете вложить одну функцию в другую. Вложенная функция (nested function; inner) приватная (private) и
             она помещена в другую функцию (outer). Так образуется замыкание (closure). Closure — это выражение (обычно
             функция), которое может иметь свободные переменные вместе со средой, которая связывает эти переменные (что
@@ -192,21 +196,24 @@ const notHoisted = function() {
             аргументы и переменные функции, в которую та вложена. Другими словами, вложенная функция содержит scope
             внешней ("outer") функции.</p>
         </section>
-        <section>
-          <h4>3.2. Псевдомассив arguments</h4>
-          <p>С помощью объекта arguments Вы можете вызвать функцию, передавая в неё больше аргументов, чем формально
+
+        <section class="page">
+          <h3>3.2. Псевдомассив arguments</h3>
+          <p>С помощью объекта <span class="txt__highlighted">arguments</span> вы можете вызвать функцию, передавая в
+            неё больше аргументов, чем формально
             объявили принять. Это очень полезно, если вы не знаете точно, сколько аргументов должна принять ваша
             функция.</p>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function f0() {
-            console.log(arguments);
-            console.log(arguments[0]?.name);
-          }
-          
-          f0({ name: 'h' }, 2, 5, 7, 8, 9);
-          f0();</code></pre>
+  console.log(arguments);
+  console.log(arguments[0]?.name);
+}
+
+f0({ name: 'h' }, 2, 5, 7, 8, 9);
+f0();</code></pre>
         </section>
-        <section>
-          <h4>3.3. Параметры функции: по умолчанию (default) и оставшиеся (rest)</h4>
+
+        <section class="page">
+          <h3>3.3. Параметры функции: по умолчанию (default) и оставшиеся (rest)</h3>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function family(firstPerson = 'daddy', secondPerson = 'mummy', ...children) {
   console.log('firstPerson: ', firstPerson);
   console.log('secondPerson: ', secondPerson);
@@ -220,8 +227,8 @@ console.log();
 family();</code></pre>
         </section>
 
-        <section>
-          <h4>3.4. Стрелочные функции / arrow functions</h4>
+        <section class="page">
+          <h3>3.4. Стрелочные функции / arrow functions</h3>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">const INTERVALS = ['15min', '30min', '1hour', '2hour', '1week', '2week'];
 const getIntervalsOnlyHours = intervals => intervals.filter(int => int.includes('hour'));
 
@@ -229,7 +236,8 @@ const hours = getIntervalsOnlyHours(INTERVALS);
 console.log('hours: ', hours);</code></pre>
 
         </section>
-        <section>
+
+        <section class="page">
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function sayAboutNumbers() {
   this.moreTxt = 'is more than';
   this.notMoreTxt = 'is not more than';
@@ -248,7 +256,7 @@ sayAboutNumbers(55, 78, 5);</code></pre>
         </section>
       </section>
 
-      <section>
+      <section class="page">
         <h1>Этого более чем достаточно для работы.</h1>
       </section>
     </div>

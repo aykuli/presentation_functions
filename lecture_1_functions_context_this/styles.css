@@ -15,23 +15,40 @@ ol {
 .reveal h2 {
   font-size: 4rem;
 }
-
-/* .reveal a {
-  color: #4f4f81;
-  text-decoration: none;
+.reveal h3 {
+  font-size: 2.5rem;
+  text-transform: none;
 }
-.reveal a:hover,
-a:focus {
-  color: #1f1f7e;
-  text-decoration: none;
-} */
+
+.reveal .page li i {
+  margin-right: 20px;
+}
+
+.reveal pre {
+  width: 95%;
+  margin: 10px;
+}
 
 .reveal ul {
+  list-style: inherit;
+}
+.reveal .content__list {
   list-style: none;
 }
-.reveal li {
+.reveal .content__list > li {
+  font-size: 1.75rem;
+}
+.reveal .content__list li {
+  margin-bottom: 2px;
+  padding: 5px;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+}
+.reveal li,
+p {
   font-size: 1.5rem;
-  line-height: 1.4rem;
+  line-height: 2rem;
+  margin-bottom: 12px;
 }
 
 .events-often ul {
@@ -40,7 +57,7 @@ a:focus {
 
 .txt__highlighted {
   padding: 5px 10px;
-  margin: 10px 20px 0;
+  margin: 10px 0;
   background-color: rgb(216, 144, 200);
   border-radius: 8px;
   line-height: 1rem;
@@ -65,6 +82,20 @@ a:focus {
   margin: 0;
 }
 
-.table {
-  margin-left: 0;
+.reveal .table {
+  width: 100%;
+  border-spacing: 10px;
+  border-collapse: unset;
+}
+.reveal .table td {
+  border: none;
+  list-style: none;
+}
+
+.reveal .long-list li {
+  font-size: 1.2rem;
+}
+
+.reveal .stack p {
+  font-size: 1.15rem;
 }
