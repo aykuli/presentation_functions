@@ -1,0 +1,70 @@
+.reveal {
+  /* background-color: #ffd541; */
+  font-size: 1rem;
+}
+.backgrounds > div:first-child {
+  background-color: #ffd541;
+}
+.reveal section,
+h1,
+h2,
+ol {
+  text-align: left;
+}
+
+.reveal h2 {
+  font-size: 4rem;
+}
+
+/* .reveal a {
+  color: #4f4f81;
+  text-decoration: none;
+}
+.reveal a:hover,
+a:focus {
+  color: #1f1f7e;
+  text-decoration: none;
+} */
+
+.reveal ul {
+  list-style: none;
+}
+.reveal li {
+  font-size: 1.5rem;
+  line-height: 1.4rem;
+}
+
+.events-often ul {
+  list-style: none;
+}
+
+.txt__highlighted {
+  padding: 5px 10px;
+  margin: 10px 20px 0;
+  background-color: rgb(216, 144, 200);
+  border-radius: 8px;
+  line-height: 1rem;
+}
+
+.events--list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.events--list a {
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.content li {
+  padding: 15px 0;
+}
+.content li ul {
+  list-style: none;
+  padding-top: 15px;
+  margin: 0;
+}
+
+.table {
+  margin-left: 0;
+}

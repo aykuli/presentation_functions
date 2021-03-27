@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Контекст. Объект привязки / Function. Context. this</title>
+  <link rel="stylesheet" href="./reveal/reveal.css" />
+  <link rel="stylesheet" href="./reveal/theme/league.css" />
+  <link rel="stylesheet" href="./reveal/plugin/highlight/zenburn.css" />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" />
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides slides-ayn">
+      <section style="top: 0; ">
+        <h1 style="font-size: 4rem; color: black; text-shadow: none; font-weight: bold;">Функция. Контекст. Объект
+          привязки <br />
+          <br />
+          Function. Context. this
+        </h1>
+        <div
+          style="margin-top: 250px; display: flex; flex-direction: column; flex-grow: 1; align-items: flex-end;color: black;">
+          <span>Айнур Шауэрман</span>
+          <span>Фронтенд разработчик в StormWall Labs</span>
+        </div>
+      </section>
+
+      <section class="content">
+        <h2>Содержание:</h2>
+        <ul>
+          <li style="font-size: 1.75rem;">1. Функция.
+            <ul>
+              <li style="font-size: 1.4rem;padding: 5px;">1.1. Смысл - зачем нужна, когда использовать</li>
+              <li style="font-size: 1.4rem;padding: 5px;">1.2. Синтаксис</li>
+              <li style="font-size: 1.4rem;padding: 5px;">1.3. Именование / naming</li>
+              <li style="font-size: 1.4rem;padding: 5px;">1.4. Возвращаемое значение и результат выполнения функции</li>
+            </ul>
+          </li>
+          <li style="font-size: 1.75rem;">2. Контекст / Context.
+            <ul>
+              <li style="font-size: 1.4rem;padding: 5px;">2.1. Смысл</li>
+              <li style="font-size: 1.4rem;padding: 5px;">2.2. Рекурсивная функция</li>
+              <li style="font-size: 1.4rem;padding: 5px;">2.3. Переменные - локальные, внешние</li>
+              <li style="font-size: 1.4rem;padding: 5px;">2.4. Параметры - параметры по умолчанию, остаточные параметры,
+                оператор расширения </li>
+            </ul>
+          </li>
+          <li style="font-size: 1.75rem;">3. Объект привязки / this
+            <ul>
+              <li style="font-size: 1.4rem;">3.1. Значение (в строгом и нестрогом режимах)</li>
+              <li style="font-size: 1.4rem;padding: 5px;">3.2. Зависимость this от метода вызова функции</li>
+              <li style="font-size: 1.4rem;padding: 5px;">3.3. Методы передачи контекста - bind / apply / call </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>1. Функция</h2>
+        <p>Ключевые моменты:</p>
+        <ul>
+          <li> <i class="fas fa-rocket"></i> Функция - это объект</li>
+          <li>
+            <p><i class="fas fa-rocket"></i> Важнейшей особенностью языка JS является первоклассная поддержка функций​
+              (functions as first-class citizen).</p>
+            <p>Это означает, что язык поддерживает:
+            <ol>
+              <li>передачу функций в качестве аргументов другим функциям,</li>
+              <li>возврат их как результат других функций (функций высшего порядка),</li>
+              <li>присваивание их переменным,</li>
+              <li>присваивание их переменным или сохранение в структурах данных,</li>
+              <li>создавать анонимно.</li>
+            </ol>
+            </p>
+            <p>Термин был впервые использован Кристофером Стрэчи в контексте «функции как объекты первого класса» в
+              середине 1960-х.</p>
+          </li>
+        </ul>
+
+
+
+      </section>
+      <section>
+        <h3>1.1. Смысл - зачем нужна, когда использовать</h3>
+        <ul>
+          <li><i class="fas fa-dot-circle"></i>DRY</li>
+          <li><i class="fas fa-dot-circle"></i>Выразительность</li>
+        </ul>
+      </section>
+      <section>
+        <section>
+          <h3>1.2. Синтаксис</h3>
+          <p>Объявление функции состоит из следующих частей:</p>
+          <ul>
+            <li><i class="fas fa-dot-circle"></i> Имя функции.</li>
+            <li><i class="fas fa-dot-circle"></i> Список параметров (принимаемых функцией) заключённых в круглые скобки
+              ()
+              и разделённых запятыми.
+              <ol>
+                <li>
+                  Примитивные параметры передаются функции значением; значение передаётся в функцию,
+                  но если функция меняет значение параметра, это изменение не отразится глобально или после вызова
+                  функции.
+                </li>
+                <li>Если параметр - объект,и функция изменит свойство переданного в неё объекта, это изменение будет
+                  видно и вне функции.</li>
+              </ol>
+            </li>
+            <li><i class="fas fa-dot-circle"></i> Инструкции, которые будут выполнены после вызова функции, заключают в
+              фигурные скобки { }.</li>
+          </ul>
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-10">function isRecipeVegan(recipe) {
+  const isRecipeContainProducts = recipe.includes('milk', 'egg', 'meat');
+  return isRecipeContainProducts;
+}</code></pre>
+        </section>
+
+        <section>
+          <h4>Декларативная функция / function declaration</h4>
+
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-10">function getMathHomework(allHomework) {
+  return allHomework.math;
+}</code></pre>
+
+        </section>
+        <section>
+          <h4>Функциональное выражение / function definition expression</h4>
+
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-10">const getMathHomework = function (allHomework) {
+  return allHomework.math;
+}</code></pre>
+        </section>
+        <section>
+          <h4>Стрелочная функция / Arrow function</h4>
+
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-10">const getMathHomework = (allHomework) => {
+  return allHomework.math;
+}</code></pre>
+        </section>
+        <section>
+          <h4>Функция немедленного выполнения</h4>
+
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-10">(function writeInConsole() {
+  console.log('сразу выполняемая функция');
+})();</code></pre>
+        </section>
+      </section>
+
+      <section>
+        <h4>1.3 Наименование функции</h4>
+        <p>Функция – это список инструкцийб а лучше одной инструкций, т.е. действие. Поэтому имя функции обычно является
+          глаголом.</p>
+        <p>Оно должно быть выразительным, чтобы программист, который будет читать код, сразу быстро понял, что делает
+          функция, с минимальным мозговым напряжением.</p>
+        <p>Часто использующиеся глагольные префиксы: </p>
+        <ul>
+          <li><span class="txt__highlighted">handle...</span> – обработать что-то (обычно событие),</li>
+          <li><span class="txt__highlighted">get…</span> – возвращают значение,</li>
+          <li><span class="txt__highlighted">set…</span> – установить значение,</li>
+          <li><span class="txt__highlighted">calc…</span> – что-то вычисляют,
+          <li><span class="txt__highlighted">create…</span> – что-то создают,
+          <li><span class="txt__highlighted">check…</span> – что-то проверяют и возвращают логическое значение, и т.д.
+        </ul>
+      </section>
+
+      <section>
+        <section>
+          <h4>1.4 Возвращаемое значение и результат выполнения функции</h4>
+          <p>Функция может вернуть результат, который будет передан в вызвавший её код.</p>
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">const MENU_LIST = ['Main', 'Profile', 'Schedule', 'Students', 'Reports', 'Administration'];
+const role = {
+  student: 'student',
+  admin: 'admin',
+  teacher: 'teacher',
+};
+          
+const adminMenu = getMenu(MENU_LIST, role.admin);
+const studentMenu = getMenu(MENU_LIST, role.student);
+const teacherMenu = getMenu(MENU_LIST, role.teacher);
+
+function getMenu(allMenu, role) {
+  switch (role) {
+    case 'student':
+      return allMenu.filter(item => ['Main', 'Schedule'].includes(item));
+    case 'teacher':
+      return allMenu.filter(item => item !== 'Administration');
+    default:
+      return allMenu;
+  }
+}</code></pre>
+        </section>
+
+        <section>
+          <p>Результат функции с пустым return или без него – undefined.</p>
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function highOrderFunction(dayNumber, doing) {
+  if (1 <= dayNumber <= 10) {
+    doing();
+  }
+}</code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>2. Контекст / Context</h2>
+          <p>Контекст функции - это значение this для этой функций​, т.е. объект, для которого функция вызывается как
+            метод.</p>
+          В JavaScript существует три типа контекстов выполнения:
+          <ul>
+            <li>
+            </li>
+            <li>Глобальный контекст выполнения. Это базовый, используемый по умолчанию контекст выполнения. Если некий
+              код находится не внутри какой-нибудь функции, значит этот код принадлежит глобальному контексту.
+              Глобальный
+              контекст характеризуется наличием глобального объекта, которым, в случае с браузером, является объект
+              window, и тем, что ключевое слово this указывает на этот глобальный объект. В программе может быть лишь
+              один
+              глобальный контекст.
+            </li>
+            <li>Контекст выполнения функции. Каждый раз, когда вызывается функция, для неё создаётся новый контекст.
+              Каждая функция имеет собственный контекст выполнения. В программе может одновременно присутствовать
+              множество контекстов выполнения функций. При создании нового контекста выполнения функции он проходит
+              через
+              определённую последовательность шагов, о которой мы поговорим ниже.
+            </li>
+            <li>Контекст выполнения функции eval. Код, выполняемый внутри функции eval, также имеет собственный контекст
+              выполнения. Однако функцией eval пользуются очень редко, поэтому здесь мы об этом контексте выполнения
+              говорить не будем.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <p>Стек выполнения (execution stack), который ещё называют стеком вызовов (call stack), это LIFO-стек, который
+            используется для хранения контекстов выполнения, создаваемых в ходе работы кода.
+          </p>
+          <p>
+            Когда JS-движок начинает обрабатывать скрипт, движок создаёт глобальный контекст выполнения и помещает его в
+            текущий стек. При обнаружении команды вызова функции движок создаёт новый контекст выполнения для этой
+            функции
+            и помещает его в верхнюю часть стека.
+          </p>
+          <p>
+            Движок выполняет функцию, контекст выполнения которой находится в верхней части стека. Когда работа функции
+            завершается, её контекст извлекается из стека и управление передаётся тому контексту, который находится в
+            предыдущем элементе стека.</p>
+          <img src="./assets/imgs/context.png" />
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">const someVar = 555;
+
+function first() {
+  second();
+}
+function second() {
+  // operation here
+}
+first();</code></pre>
+        </section>
+        <section>
+          <h4>Создание контекста</h4>
+          <p>Перед выполнением JavaScript-кода создаётся контекст выполнения. В процессе его создания выполняются три
+            действия:</p>
+          <ul>
+            <li>Определяется значение this и осуществляется привязка this (this binding).</li>
+            <li>Создаётся компонент LexicalEnvironment (лексическое окружение).</li>
+            <li>Создаётся компонент VariableEnvironment (окружение переменных).</li>
+          </ul>
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">ExecutionContext = {
+  ThisBinding = <this value>,
+  LexicalEnvironment = { ... },
+  VariableEnvironment = { ... },
+}</code></pre>
+        </section>
+        <section>
+          <p>Привязка this</p>
+          <p>В глобальном контексте выполнения this содержит ссылку на глобальный объект (в браузере это объект window).
+          </p>
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">let foo = {
+  baz: function() {
+    console.log(this);
+  }
+}
+foo.baz();    // 'this' указывает на объект 'foo', так как функция 'baz' была вызвана как метод объекта 'foo'
+let bar = foo.baz;</code></pre>
+          <p>Лексическое окружение</p>
+          <p> — это структура, которая хранит сведения о соответствии идентификаторов и переменных. Под
+            «идентификатором» здесь понимается имя переменной или функции, а под «переменной» — ссылка на конкретный
+            объект (в том числе — на функцию) или примитивное значение.</p>
+
+          <p>Окружение переменных (Variable Environment)</p>
+
+          <p>— это тоже лексическое окружение, запись окружения которого хранит привязки, созданные посредством команд
+            объявления переменных (VariableStatement) в текущем контексте выполнения.</p>
+
+          <p>Так как окружение переменных также является лексическим окружением, оно обладает всеми вышеописанными
+            свойствами лексического окружения.</p>
+
+          <p>В ES6 существует одно различие между компонентами LexicalEnvironment и VariableEnvironment. Оно
+            заключается в
+            том, что первое используется для хранения объявлений функций и переменных, объявленных с помощью ключевых
+            слов
+            let и const, а второе — только для хранения привязок переменных, объявленных с использованием ключевого
+            слова
+            var.</p>
+          </p>
+        </section>
+      </section>
+      <section>
+        <h4>2.2. Рекурсивная функция</h4>
+        <p>Функция может вызывать саму себя. Три способа такого вызова:</p>
+        <ol>
+          <li>по имени функции</li>
+          <li>по переменной, которая ссылается на функцию</li>
+        </ol>
+        <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">const foo = function bar(count = 0) {
+  for (let i = 0; i < 2; i++) {
+    console.log('i = ', i);
+  }
+  ++count;
+  if (count < 10) {
+    foo(count);
+    bar(count); // то же самое, что и строка выше
+  }
+};
+foo(0);</code></pre>
+
+      </section>
+      <section>
+        <h4>2.3. Переменные</h4>
+        <p><span class=".txt__highlighted">Локальные переменные</span> - это переменные, объявленные внутри функции,
+          видны
+          только внутри этой функции.</p>
+        <p><span class=".txt__highlighted">Внешние переменные</span> - это переменные, объявленные вне функции.</p>
+        <p>Функция обладает полным доступом к внешним переменным и может изменять их значение.</p>
+        <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">let pet = 'Вася';
+
+function showMessage() {
+  pet = "Петя";
+  let message = 'Моего питомца зовут ' + pet;
+  console.log(message);
+}
+
+console.log(pet); 
+showMessage();
+console.log(pet);</code></pre>
+
+
+        <p>Внешняя переменная используется, только если внутри функции нет такой локальной.</p>
+      </section>
+
+      <section>
+        <h4>2.4 Параметры функции(аргументами функции)</h4>
+        <p>Нужны для передачи информации внутрь функции.</p>
+        <p>Переданные значения копируются в локальные переменные </p>
+
+        <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function tryChangeParams(param0, param1) {
+  console.log('Before change: \nparam0:', param0, '\nparam1: ', param1);
+
+  param0 = param0 + ' is changed';
+  param1 = param1 + ' is changed too';
+  console.log('\nAfter change: \nparam0:', param0, '\nparam1: ', param1);
+}
+const [param0, param1] = ['P0', 'P1'];
+tryChangeParams(param0, param1);
+console.log('\n\nOut of func: \nparam0:', param0, '\nparam1: ', param1);
+</code></pre>
+
+
+        <p>Внешняя переменная используется, только если внутри функции нет такой локальной.</p>
+      </section>
+
+      <section>
+        <h1>Теперь вы знаете достаточно, чтобы ...</h1>
+        <p>Что я могла забыть показать:</p>
+        <ul style="list-style: square;">
+          <li>что будет в следующей лекции</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+  <script src="./reveal/reveal.js"></script>
+  <script src="./reveal/plugin/markdown/markdown.js"></script>
+  <script src="./reveal/plugin/highlight/highlight.js"></script>
+  <script>
+    Reveal.initialize({ plugins: [RevealMarkdown, RevealHighlight], slideNumber: 'c/t', autoPlayMedia: true });
+  </script>
+</body>
+
+</html>

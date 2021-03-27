@@ -6,7 +6,7 @@ Function. Context. this
 Содержание / Content:
 1. Функция.
 1.1. Смысл - зачем нужна, когда использовать
-1.2. Синтаксис - декларативная функция / function declaration
+1.2. Cпособы объявления - декларативная функция / function declaration
                  функциональное выражение / function expression
                  стрелочная функция / arrow function
 1.3. Именование / naming
