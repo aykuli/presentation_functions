@@ -352,11 +352,12 @@ console.log(pet);</code></pre>
       </section>
 
       <section>
-        <h4>2.4 Параметры функции(аргументами функции)</h4>
-        <p>Нужны для передачи информации внутрь функции.</p>
-        <p>Переданные значения копируются в локальные переменные </p>
+        <section>
+          <h4>2.4 Параметры функции (аргументы функции)</h4>
+          <p>Нужны для передачи информации внутрь функции.</p>
+          <p>Переданные значения копируются в локальные переменные </p>
 
-        <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function tryChangeParams(param0, param1) {
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function tryChangeParams(param0, param1) {
   console.log('Before change: \nparam0:', param0, '\nparam1: ', param1);
 
   param0 = param0 + ' is changed';
@@ -369,8 +370,208 @@ console.log('\n\nOut of func: \nparam0:', param0, '\nparam1: ', param1);
 </code></pre>
 
 
-        <p>Внешняя переменная используется, только если внутри функции нет такой локальной.</p>
+          <p>Внешняя переменная используется, только если внутри функции нет такой локальной.</p>
+        </section>
+        <section>
+          <h5>Параметры по умолчанию</h5>
+          <p>Если параметр не указан, то его значением становится <span class="txt__highlighted">undefined</span>.</p>
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">// undefined
+function a(b) {
+  console.log(b);
+}
+a();
+
+// 2021
+function c(d = 2021) {
+  console.log(d);
+}
+c();
+
+// 456
+function e(f = 2021) {
+  console.log(f);
+}
+e(456);
+          </code></pre>
+        </section>
+
+        <section>
+          <h5>Объект arguments</h5>
+          <p>Объект arguments функции является псевдо-массивом. Внутри функции вы можете ссылаться к аргументам
+            следующим
+            образом:</p>
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">arguments[i]</code></pre>
+          <p>где <span class="txt__highlighted">i</span> — это порядковый номер аргумента, отсчитывающийся с 0.</p>
+          <p>где <span class="txt__highlighted">arguments.length</span> — количество всех аргументов.</p>
+
+          <p>Удобно пользоваться, если вы не знаете точно, сколько аргументов должна принять ваша функция.</p>
+
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function getGreetingMsg() {
+  console.log(arguments);
+  const joinedArr = Array.from(arguments).join(', ');
+  const joined = arguments.join(', '); // здесь компилятор будет ругаться
+  console.log('joinedArr: ', joinedArr);
+  console.log('joined: ', joined);
+  return `Добро пожаловать ${joinedArr} в нашу команду`;
+}
+
+const greating = getGreetingMsg('Вася', 'Иннокентий', 'Андриан', 'Людмила', 'Александр', 'Саша');
+console.log(greating);
+</code></pre>
+
+        </section>
+        <section>
+          <h5>Остаточные параметры (Rest parameters)</h5>
+          <p> - массив неопределённых аргументов.</p>
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function multiply(multiplier, ...theArgs) {
+  return theArgs.map(x => multiplier * x);
+}
+
+const arr = multiply(2, 1, 2, 3);
+console.log(arr); // [2, 4, 6]
+</code></pre>
+
+        </section>
       </section>
+
+      <section>
+        <section>
+          <h3>Strict mode / Строгий режим</h3>
+          <ul>
+            <li>Введен в ECMAScript 5 (2009 год). Тогда добавили новые возможности в язык и изменили некоторые из
+              существующих. Чтобы устаревший код работал, как и раньше, по умолчанию подобные изменения не применяются.
+              Поэтому нам нужно явно их активировать с помощью специальной директивы: <span class="txt__highlighted">use
+                strict</span>.</li>
+            <li>Строгий режим применяется ко всему скрипту или к отдельным функциям.</li>
+            <li>Он не может быть применён к блокам операторов</li>
+            <li>Современный JavaScript поддерживает «классы» и «модули» — продвинутые структуры языка, которые
+              автоматически включают строгий режим. Поэтому в них нет нужды добавлять директиву
+              "use strict".</li>
+          </ul>
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">/ Синтаксис переключения в строгий режим всего скрипта
+"use strict";
+const str = "Привет! Я скрипт в строгом режиме!";
+</code></pre>
+        </section>
+
+        <section>
+          <h5>Различия non-strict и strict режимов</h5>
+          <p>Синтаксические ошибки</p>
+
+          <p>При добавлении "use strict"; следующие случаи вызывают SyntaxError до выполнения скрипта:</p>
+          <ul>
+            <li> Восьмеричное представление числа var n = 023;</li>
+            <li>
+              Использование оператора with</li>
+            <li> Использование delete на имени переменной delete myVariable;</li>
+            <li> Использование eval или arguments как переменную или аргумент функции</li>
+            <li> Использование одного из новых зарезервированных ключевых слов (зарезервированных для ECMAScript 6):
+              implements, interface, let, package, private, protected, public, static, и yield</li>
+            <li> Объявление функций в блоках if (a < b) { function f() {} }</li>
+            <li> Очевидные ошибки</li>
+            <li> Объявление дважды свойства с одним и тем же именем в литерале объекта {a: 1, b: 3, a: 7}. Это уже
+              изменилось в ECMAScript 6 (баг 1041128).</li>
+            <li> Объявление нескольких аргументов функции с одним и тем же именем function f(a, b, b) {}</li>
+
+          </ul>
+          <a
+            href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Strict_mode/Transitioning_to_strict_mode">Полный
+            список</a>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h3>3. Объект привязки / this</h3>
+          <h4>3.1. Значение в строгом и нестрогом режиме</h4>
+          <p>В функциях в нестрогом режиме значением this является глобальный объект. В строгом режиме он равен
+            undefined.
+          </p>
+          <h4>3.2. Зависимость this от способа вызова функции</h4>
+          <p>Но! Если функция использовается как метод объекта, this будет ссылкой на этот объект.</p>
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">
+const post = {
+  id: 155,
+  title: 'Pst title',
+  description: 'Desc of post',
+  body: 'long text',
+};
+
+const user = {
+  id: 155,
+  name: 'Pola',
+};
+
+post.getHTML = getHTML;
+post.getName = getName;
+user.getName = getName;
+
+function getHTML() {
+  return `<h1>${this.title}</h1>
+<p class="description">${this.description}</p>
+<p class="description">${this.body}</p>
+`;
+}
+
+function getName() {
+  return `<p>User name: ${this.name}</p>`;
+}</code></pre>
+        </section>
+        <section>
+          <h4>3.3. Метод bind</h4>
+          <p>создаёт новую функцию, которая при вызове устанавливает в качестве контекста выполнения this
+            предоставленное
+            значение.</p>
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">fun.bind(context[, arg1[, arg2[, ...]]])
+</code></pre>
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function getTimezone() {
+  return this.timezone;
+}
+
+console.log(getTimezone());
+
+const user = {
+  name: '0',
+  timezone: 'Moscow',
+};
+const getTzFromUser = getTimezone.bind(user)
+</code></pre>
+
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">function getVersion(progName) {
+  return `${progName}@${this.major}.${this.minor}.${this.patch}`;
+}
+
+const progVersion = {
+  major: '0',
+  minor: '5',
+  patch: '15',
+};
+const getImgResizerVersion = getVersion.bind(progVersion, 'ImageResizer');
+</code></pre>
+        </section>
+        <section>
+          <h4>Метод call и apply</h4>
+          <p> - вызывает функцию с указанным значением this и индивидуально предоставленными аргументами.</p>
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">func.call(context, arg1, arg2);
+// результат одинаковый будет
+func.apply(context, [arg1, arg2]);</code></pre>
+          <p>Пример:</p>
+          <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">const permissions = ['posts', 'chats'];
+
+function getPermissionTxt() {
+  arguments.join = [].join;
+  return `${this.role} permitted for ${arguments.join(', ')}`;
+}
+const userRegistered = {
+  role: 'Permitted user',
+};
+
+console.log(getPermissionTxt.bind(userRegistered, permissions)());
+console.log(getPermissionTxt.call(userRegistered, 'posts', 'chats'));
+console.log(getPermissionTxt.apply(userRegistered, ['posts', 'chats']));</code></pre>
+        </section>
+      </section>
+
 
       <section>
         <h1>Теперь вы знаете достаточно, чтобы ...</h1>
