@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Контекст. Объект привязки / Function. Context. this</title>
+  <title>Функция. Контекст. Объект привязки / Function. Context. this</title>
   <link rel="stylesheet" href="./reveal/reveal.css" />
   <link rel="stylesheet" href="./reveal/theme/league.css" />
   <link rel="stylesheet" href="./reveal/plugin/highlight/zenburn.css" />
@@ -24,6 +24,7 @@
           <br />
           Function. Context. this
         </h1>
+        <p style="font-size: 2rem; color: black; text-shadow: none; font-weight: bold;">Часть 1.</p>
         <div
           style="margin-top: 250px; display: flex; flex-direction: column; flex-grow: 1; align-items: flex-end;color: black;">
           <span>Айнур Шауэрман</span>
@@ -118,6 +119,7 @@
   const isRecipeContainProducts = recipe.includes('milk', 'egg', 'meat');
   return isRecipeContainProducts;
 }</code></pre>
+
         </section>
 
         <section>
@@ -398,8 +400,7 @@ e(456);
         <section>
           <h5>Объект arguments</h5>
           <p>Объект arguments функции является псевдо-массивом. Внутри функции вы можете ссылаться к аргументам
-            следующим
-            образом:</p>
+            следующим образом:</p>
           <pre style="font-size: 1.5rem;"><code data-line-numbers="1-30">arguments[i]</code></pre>
           <p>где <span class="txt__highlighted">i</span> — это порядковый номер аргумента, отсчитывающийся с 0.</p>
           <p>где <span class="txt__highlighted">arguments.length</span> — количество всех аргументов.</p>
